@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
+}
+
+/* Configure el componente de carrusel para que ocupe toda la pantalla */
+.image-slider {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Configure cada diapositiva para llenar el contenedor principal */
+.image-slider .slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: all linear 1s;
+  overflow: hidden;
+}
+
+/* establecer estilo de imagen */
+.image-slider .image {
+  /* establecer el tamaño de la imagen */
+  width: 100%;
+  height: 100%;
+  /* La imagen es adaptativa, manteniendo la proporción para llenar la pantalla */
+  object-fit: cover;
+  /* * Diseño absoluto, el z-index 50 se coloca debajo del texto */ */
+  position: absolute;
+  z-index: 50;
+}
+
+/* establecer estilo de texto */
+.image-slider .slide .content {
+  position: absolute;
+  /* poner encima de la imagen */
+  z-index: 100;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 48px;
+  bottom: 0;
+  width: 50%;
+}
+
+/* El título es 24px desde la parte inferior. */
+.image-slider .slide .content h1 {
+  margin-bottom: 24px;
+}
+
+/* Botón de control */
+#prev,
+#next {
+  position: absolute;
+  z-index: 150;
+  width: 80px;
+  height: 80px;
+  font-size: 48px;
+  color: white;
+  /* Centrado */
+  text-align: center;
+  line-height: 80px;
+
+  /* esquinas redondeadas */
+  border-radius: 50%;
+  /* antecedentes */
+  background-color: rgba(0, 0, 0, 0.6);
+
+  /* posición en el componente */
+  top: calc(50% - 24px);
+  left: 50px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+/* La posición del siguiente botón, a la derecha */
+#next {
+  left: unset;
+  right: 50px;
+}
+
+/* Cambiar el fondo y el color de la fuente al pasar el mouse sobre el botón */
+#prev:hover,
+#next:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: black;
+}
+
+/* ocultar otras diapositivas */
+.image-slider .slide {
+  opacity: 0;
+}
+
+/* Establezca la transparencia de la diapositiva que se está reproduciendo actualmente en 1 */
+.image-slider .slide.current {
+  opacity: 1;
+}
+
+/* El texto de la imagen describe las propiedades de la animación, baje 500px */
+.image-slider .slide .content {
+  opacity: 0;
+  transform: translateY(500px);
+}
+
+/* La posición de descripción de texto de la diapositiva que se está reproduciendo actualmente se mueve a la posición original */
+.image-slider .slide.current .content {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s ease-in-out 0.4s;
+}
+
+/* Adaptarse a la pantalla */
+@media screen and (max-width: 960px) {
+  /* El texto llena la pantalla */
+  .image-slider .slide .content {
+    width: 100%;
+  }
+
+  /* Tamaño y espaciado de los botones de control reducidos */
+  #prev,
+  #next {
+    font-size: 24px;
+    left: 24px;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    top: 40%;
+  }
+
+
+/* Mueve el siguiente botón para hacer el espacio más pequeño */  
+#next {
+    left: unset;
+    right: 24px;
+  }
+}
